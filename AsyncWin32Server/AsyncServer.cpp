@@ -97,7 +97,7 @@ LRESULT CALLBACK WinProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 						WM_GETTEXT,
 						sizeof(szBuffer),
 						reinterpret_cast<LPARAM>(szBuffer));
-
+					
 					send(Socket,szBuffer,strlen(szBuffer),0);
 
 					SendMessage(hEditOut,WM_SETTEXT,NULL,(LPARAM)"");
@@ -135,10 +135,7 @@ LRESULT CALLBACK WinProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 					WM_SETFONT,
 					(WPARAM)hfDefault,
 					MAKELPARAM(FALSE,0));
-			SendMessage(hEditIn,
-					WM_SETTEXT,
-					NULL,
-					(LPARAM)"Waiting for client to connect...");
+			SetDlgItemText(hEditIn,IDC_EDIT_IN, L"Waiting for client to connect...");
 
 			// Create outgoing message box
 			hEditOut=CreateWindowEx(WS_EX_CLIENTEDGE,
@@ -166,10 +163,7 @@ LRESULT CALLBACK WinProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 					WM_SETFONT,
 					(WPARAM)hfDefault,
 					MAKELPARAM(FALSE,0));
-			SendMessage(hEditOut,
-					WM_SETTEXT,
-					NULL,
-					(LPARAM)"Type message here...");
+			SetDlgItemText(hWnd, IDC_EDIT_IN, L"Type message here...");
 
 			// Create a push button
 			HWND hWndButton=CreateWindow( 
@@ -286,16 +280,16 @@ LRESULT CALLBACK WinProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 				}
 				break;
 
-				case FD_CLOSE:
-				{
-					MessageBox(hWnd,
-						L"Client closed connection",
-						L"Connection closed!",
-						MB_ICONINFORMATION|MB_OK);
-					closesocket(Socket);
-					SendMessage(hWnd,WM_DESTROY,NULL,NULL);
-				}
-				break;
+				//case FD_CLOSE:
+				//{
+				//	MessageBox(hWnd,
+				//		L"Client closed connection",
+				//		L"Connection closed!",
+				//		MB_ICONINFORMATION|MB_OK);
+				//	closesocket(Socket);
+				//	SendMessage(hWnd,WM_DESTROY,NULL,NULL);
+				//}
+				//break;
 
 				case FD_ACCEPT:
 				{
@@ -306,10 +300,7 @@ LRESULT CALLBACK WinProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 						int nret = WSAGetLastError();
 						WSACleanup();
 					}
-					SendMessage(hEditIn,
-						WM_SETTEXT,
-						NULL,
-						(LPARAM)"Client connected!");
+					SetDlgItemText(hWnd, IDC_EDIT_IN, L"Client connected\r\n");
 				}
 				break;
     			}   

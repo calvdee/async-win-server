@@ -1,5 +1,6 @@
 #include <winsock2.h>
 #include <windows.h>
+#include <string>
 
 #pragma comment(lib,"ws2_32.lib")
 
@@ -145,10 +146,11 @@ LRESULT CALLBACK WinProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 			SendMessage(hEditOut,
 				WM_SETFONT,(WPARAM)hfDefault,
 				MAKELPARAM(FALSE,0));
-			SendMessage(hEditOut,
-				WM_SETTEXT,
-				NULL,
-				(LPARAM)"Type message here...");
+			//SendMessage(hEditOut,
+			//	WM_SETTEXT,
+			//	NULL,
+			//	(LPARAM)"Type message here...");
+			SetDlgItemText(hWnd, IDC_EDIT_IN, L"Server responses...");
 
 			// Create a push button
 			HWND hWndButton=CreateWindow( 
@@ -284,10 +286,12 @@ LRESULT CALLBACK WinProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 					strncat_s(szHistory,szIncoming,inDataLength);
 					strcat_s(szHistory,"\r\n");
 
-					SendMessage(hEditIn,
-						WM_SETTEXT,
-						sizeof(szIncoming)-1,
-						reinterpret_cast<LPARAM>(&szHistory));
+					//SendMessage(hEditIn,
+					//	WM_SETTEXT,
+					//	sizeof(szIncoming)-1,
+					//	reinterpret_cast<LPARAM>(&szHistory));
+					std::string sHistory = std::string(szHistory);
+					SetDlgItemText(hWnd, IDC_EDIT_IN, std::wstring(sHistory.begin(),sHistory.end()).c_str());
 				}
 				break;
 
