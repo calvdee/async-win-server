@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AsyncConsoleServer", "AsyncConsoleServer\AsyncConsoleServer.vcxproj", "{21B6DFA6-7088-42DC-A163-0FB3B6823542}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AsyncConsoleClient", "AsyncConsoleClient\AsyncConsoleClient.vcxproj", "{A77D8D45-60B8-4CC9-A791-48CC51085E18}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AsyncWin32Client", "AsyncWin32Client\AsyncWin32Client.vcxproj", "{C84C4B03-2012-4189-97D1-21BFA0652AFE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AsyncWin32Server", "AsyncWin32Server\AsyncWin32Server.vcxproj", "{C23B9453-04A4-44D9-AA4F-B275382138BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21B6DFA6-7088-42DC-A163-0FB3B6823542}.Debug|Win32.ActiveCfg = Debug|Win32
+		{21B6DFA6-7088-42DC-A163-0FB3B6823542}.Debug|Win32.Build.0 = Debug|Win32
+		{21B6DFA6-7088-42DC-A163-0FB3B6823542}.Release|Win32.ActiveCfg = Release|Win32
+		{21B6DFA6-7088-42DC-A163-0FB3B6823542}.Release|Win32.Build.0 = Release|Win32
+		{A77D8D45-60B8-4CC9-A791-48CC51085E18}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A77D8D45-60B8-4CC9-A791-48CC51085E18}.Debug|Win32.Build.0 = Debug|Win32
+		{A77D8D45-60B8-4CC9-A791-48CC51085E18}.Release|Win32.ActiveCfg = Release|Win32
+		{A77D8D45-60B8-4CC9-A791-48CC51085E18}.Release|Win32.Build.0 = Release|Win32
+		{C84C4B03-2012-4189-97D1-21BFA0652AFE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C84C4B03-2012-4189-97D1-21BFA0652AFE}.Debug|Win32.Build.0 = Debug|Win32
+		{C84C4B03-2012-4189-97D1-21BFA0652AFE}.Release|Win32.ActiveCfg = Release|Win32
+		{C84C4B03-2012-4189-97D1-21BFA0652AFE}.Release|Win32.Build.0 = Release|Win32
+		{C23B9453-04A4-44D9-AA4F-B275382138BD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C23B9453-04A4-44D9-AA4F-B275382138BD}.Debug|Win32.Build.0 = Debug|Win32
+		{C23B9453-04A4-44D9-AA4F-B275382138BD}.Release|Win32.ActiveCfg = Release|Win32
+		{C23B9453-04A4-44D9-AA4F-B275382138BD}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
