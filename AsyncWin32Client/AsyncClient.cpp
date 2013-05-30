@@ -1,13 +1,9 @@
 #include <winsock2.h>
 #include <windows.h>
 #include <string>
+#include "global.h"
 
 #pragma comment(lib,"ws2_32.lib")
-
-#define IDC_EDIT_IN		101
-#define IDC_EDIT_OUT		102
-#define IDC_MAIN_BUTTON		103
-#define WM_SOCKET		104
 
 char *szServer="localhost";
 int nPort=5555;
@@ -146,10 +142,6 @@ LRESULT CALLBACK WinProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 			SendMessage(hEditOut,
 				WM_SETFONT,(WPARAM)hfDefault,
 				MAKELPARAM(FALSE,0));
-			//SendMessage(hEditOut,
-			//	WM_SETTEXT,
-			//	NULL,
-			//	(LPARAM)"Type message here...");
 			SetDlgItemText(hWnd, IDC_EDIT_IN, L"Server responses...");
 
 			// Create a push button
@@ -172,60 +164,8 @@ LRESULT CALLBACK WinProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam)
 				(WPARAM)hfDefault,
 				MAKELPARAM(FALSE,0));
 
-			// Set up Winsock
-			WSADATA WsaDat;
-			int nResult=WSAStartup(MAKEWORD(2,2),&WsaDat);
-			if(nResult!=0)
-			{
-				MessageBox(hWnd,
-					L"Winsock initialization failed",
-					L"Critical Error",
-					MB_ICONERROR);
-				SendMessage(hWnd,WM_DESTROY,NULL,NULL);
-				break;
-			}
-
-			Socket=socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
-			if(Socket==INVALID_SOCKET)
-			{
-				MessageBox(hWnd,
-					L"Socket creation failed",
-					L"Critical Error",
-					MB_ICONERROR);
-				SendMessage(hWnd,WM_DESTROY,NULL,NULL);
-				break;
-			}
-
-			nResult=WSAAsyncSelect(Socket,hWnd,WM_SOCKET,(FD_CLOSE|FD_READ));
-			if(nResult)
-			{
-				MessageBox(hWnd,
-					L"WSAAsyncSelect failed",
-					L"Critical Error",
-					MB_ICONERROR);
-				SendMessage(hWnd,WM_DESTROY,NULL,NULL);
-				break;
-			}
-
-			// Resolve IP address for hostname
-			struct hostent *host;
-			if((host=gethostbyname(szServer))==NULL)
-			{
-				MessageBox(hWnd,
-					L"Unable to resolve host name",
-					L"Critical Error",
-					MB_ICONERROR);
-				SendMessage(hWnd,WM_DESTROY,NULL,NULL);
-				break;
-			}
-
-			// Set up our socket address structure
-			SOCKADDR_IN SockAddr;
-			SockAddr.sin_port=htons(nPort);
-			SockAddr.sin_family=AF_INET;
-			SockAddr.sin_addr.s_addr=*((unsigned long*)host->h_addr);
-
-			connect(Socket,(LPSOCKADDR)(&SockAddr),sizeof(SockAddr));
+			// Initialize Winsock
+			InitWinsock(hWnd,szServer,nPort,Socket);
 		}
 		break;
 

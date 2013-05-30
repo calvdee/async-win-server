@@ -18,5 +18,13 @@
     <ClCompile Include="AsyncClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InitWinsock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
